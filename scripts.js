@@ -15,6 +15,11 @@ function vote(option) {
 
 function updateResults() {
     const totalVotes = votes.opcao1 + votes.opcao2 + votes.opcao3;
+
+    // Atualiza a contagem no resumo de votos
+    document.getElementById('count-opcao1').textContent = `${votes.opcao1} votos`;
+    document.getElementById('count-opcao2').textContent = `${votes.opcao2} votos`;
+    document.getElementById('count-opcao3').textContent = `${votes.opcao3} votos`;
     
     for (const [key, value] of Object.entries(votes)) {
         const percentage = totalVotes > 0 ? (value / totalVotes * 100).toFixed(2) : 0;
