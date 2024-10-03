@@ -9,12 +9,7 @@
 <body>
     <div class="container">
         <h1>VOTA AI ITAIPÉ</h1>
-        <div id="aviso" class="aviso">
-            <p>Esta página é apenas para fins de estatísticas e não é manipulável. Ela ficará no ar até o dia 05/10/2024.</p>
-            <label>
-                <input type="checkbox" id="termos" onchange="toggleVoteButton()"> Li e concordo com os termos
-            </label>
-        </div>
+        <div id="aviso" class="aviso"></div>
         <div class="vote-buttons" id="votacao" style="display: none;">
             <div class="vote-option">
                 <img src="opcao1.png" alt="Opção 1" class="option-image">
@@ -35,7 +30,34 @@
             <p>DÉ CARAJE E WAGNER - 0 votos</p>
             <p>MARCONI E LUANDER - 0 votos</p>
         </div>
+        <div>
+            <input type="checkbox" id="termos" onclick="toggleVoteButton()">
+            <label for="termos">Li e concordo com os termos</label>
+        </div>
+        <footer class="footer">
+            <p>Direitos Reservados © 2024</p>
+        </footer>
     </div>
+
+    <!-- Firebase Configuration -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwA08nYaCD3ns99CXi2DgngsaucR_ySIU",
+            authDomain: "votaaiitaipe.firebaseapp.com",
+            databaseURL: "https://votaaiitaipe-default-rtdb.firebaseio.com",
+            projectId: "votaaiitaipe",
+            storageBucket: "votaaiitaipe.appspot.com",
+            messagingSenderId: "452394212573",
+            appId: "1:452394212573:web:8f1c52d40ddc8e0023cf34",
+            measurementId: "G-N4LEFSJ1ZS"
+        };
+
+        // Inicializa o Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
