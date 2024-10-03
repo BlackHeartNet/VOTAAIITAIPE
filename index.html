@@ -9,21 +9,24 @@
 <body>
     <div class="container">
         <h1>VOTA AI ITAIPÉ</h1>
-        <div class="vote-buttons">
+        <div id="aviso" class="aviso">
+            <p>Esta página é apenas para fins de estatísticas e não é manipulável. Ela ficará no ar até o dia 05/10/2024.</p>
+            <label>
+                <input type="checkbox" id="termos" onchange="toggleVoteButton()"> Li e concordo com os termos
+            </label>
+        </div>
+        <div class="vote-buttons" id="votacao" style="display: none;">
             <div class="vote-option">
                 <img src="opcao1.png" alt="Opção 1" class="option-image">
-                <span>TED E MARCELO</span>
-                <button onclick="vote('Opção 1')" class="votar-button">Votar</button>
+                <button onclick="vote('TED E MARCELO')" class="votar-button">TED E MARCELO</button>
             </div>
             <div class="vote-option">
                 <img src="opcao2.png" alt="Opção 2" class="option-image">
-                <span>DÉ CARAJE E WAGNER</span>
-                <button onclick="vote('Opção 2')" class="votar-button">Votar</button>
+                <button onclick="vote('DÉ CARAJE E WAGNER')" class="votar-button">DÉ CARAJE E WAGNER</button>
             </div>
             <div class="vote-option">
                 <img src="opcao3.png" alt="Opção 3" class="option-image">
-                <span>MARCONI E LUANDER</span>
-                <button onclick="vote('Opção 3')" class="votar-button">Votar</button>
+                <button onclick="vote('MARCONI E LUANDER')" class="votar-button">MARCONI E LUANDER</button>
             </div>
         </div>
         <div id="result" class="result">
