@@ -11,23 +11,40 @@
         <h1>VOTA AI ITAIPÉ</h1>
     </header>
     <main>
-        <div class="voting-envelope">
-            <h2>Envelope de Votação</h2>
-            <div class="results">
-                <div class="result-bar" id="result-opcao1" onclick="vote('opcao1')">
-                    <span class="option-title">Opção 1</span>
-                    <div class="progress" style="width: 0%; background-color: #4caf50;"></div>
-                    <span class="percentage">0%</span>
+        <div class="container">
+            <div class="voting-envelope">
+                <h2>Envelope de Votação</h2>
+                <div class="results">
+                    <div class="result-bar" id="result-opcao1" onclick="vote('opcao1')">
+                        <span class="option-title">Opção 1</span>
+                        <div class="progress" style="width: 0%; background-color: #4caf50;"></div>
+                        <span class="percentage">0%</span>
+                    </div>
+                    <div class="result-bar" id="result-opcao2" onclick="vote('opcao2')">
+                        <span class="option-title">Opção 2</span>
+                        <div class="progress" style="width: 0%; background-color: #2196F3;"></div>
+                        <span class="percentage">0%</span>
+                    </div>
+                    <div class="result-bar" id="result-opcao3" onclick="vote('opcao3')">
+                        <span class="option-title">Opção 3</span>
+                        <div class="progress" style="width: 0%; background-color: #f44336;"></div>
+                        <span class="percentage">0%</span>
+                    </div>
                 </div>
-                <div class="result-bar" id="result-opcao2" onclick="vote('opcao2')">
-                    <span class="option-title">Opção 2</span>
-                    <div class="progress" style="width: 0%; background-color: #2196F3;"></div>
-                    <span class="percentage">0%</span>
+            </div>
+            <div class="vote-summary">
+                <h2>Resumo de Votos</h2>
+                <div class="summary-item">
+                    <img src="opcao1.png" alt="Opção 1">
+                    <span id="count-opcao1">0 votos</span>
                 </div>
-                <div class="result-bar" id="result-opcao3" onclick="vote('opcao3')">
-                    <span class="option-title">Opção 3</span>
-                    <div class="progress" style="width: 0%; background-color: #f44336;"></div>
-                    <span class="percentage">0%</span>
+                <div class="summary-item">
+                    <img src="opcao2.png" alt="Opção 2">
+                    <span id="count-opcao2">0 votos</span>
+                </div>
+                <div class="summary-item">
+                    <img src="opcao3.png" alt="Opção 3">
+                    <span id="count-opcao3">0 votos</span>
                 </div>
             </div>
         </div>
