@@ -5,9 +5,12 @@ const votes = {
 };
 
 function vote(option) {
-    votes[option]++;
-    updateResults();
-    alert(`Obrigado! Você votou na ${option}.`);
+    const confirmation = confirm(`Você tem certeza de que deseja votar na ${option}?`);
+    if (confirmation) {
+        votes[option]++;
+        updateResults();
+        alert(`Obrigado! Você votou na ${option}.`);
+    }
 }
 
 function updateResults() {
