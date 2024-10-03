@@ -1,3 +1,21 @@
+body {
+    background-color: #121212; /* Fundo escuro */
+    color: #ffffff; /* Texto claro */
+    font-family: 'Arial', sans-serif; /* Fonte moderna */
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -8,6 +26,10 @@
 
 .voting-envelope {
     flex: 0 0 60%; /* Largura da enquete */
+    background-color: #1e1e1e; /* Fundo da enquete */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
 .vote-summary {
@@ -15,7 +37,26 @@
     background-color: #2a2a2a;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+.result-bar {
+    background-color: #333; /* Cor de fundo da barra */
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.result-bar:hover {
+    background-color: #444; /* Efeito ao passar o mouse */
+}
+
+.progress {
+    height: 10px; /* Altura da barra de progresso */
+    border-radius: 5px;
+    margin-top: 5px;
 }
 
 .summary-item {
@@ -28,4 +69,9 @@
     width: 30px; /* Ajuste o tamanho conforme necessário */
     height: 30px; /* Ajuste o tamanho conforme necessário */
     margin-right: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
 }
