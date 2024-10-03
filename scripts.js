@@ -25,25 +25,12 @@ function vote(option) {
     const confirmation = confirm(`Você tem certeza de que deseja votar na ${option}?`);
     if (confirmation) {
         // Atualiza o número de votos no Firestore
-        db.collection("votes").doc(option).get().then(doc => {
-            if (doc.exists) {
-                db.collection("votes").doc(option).update({
-                    votes: firebase.firestore.FieldValue.increment(1)
-                }).then(() => {
-                    alert(`Obrigado! Você votou na ${option}.`);
-                }).catch(error => {
-                    console.error("Erro ao atualizar votos: ", error);
-                });
-            } else {
-                // Se o documento não existe, cria um novo
-                db.collection("votes").doc(option).set({
-                    votes: 1
-                }).then(() => {
-                    alert(`Obrigado! Você votou na ${option}.`);
-                }).catch(error => {
-                    console.error("Erro ao criar votos: ", error);
-                });
-            }
+        db.collection("votes").doc(option).set({
+            votes: firebase.firestore.FieldValue.increment(1)
+        }, { merge: true }).then(() => {
+            alert(`Obrigado! Você votou na ${option}.`);
+        }).catch(error => {
+            console.error("Erro ao atualizar votos: ", error);
         });
     }
 }
