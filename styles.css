@@ -1,3 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.voting-envelope {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    text-align: center;
+}
+
 .results {
     margin-top: 20px;
 }
@@ -6,14 +41,14 @@
     margin: 10px 0;
     display: flex;
     align-items: center;
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    cursor: pointer;
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 
 .result-bar:hover {
-    background-color: #e0e0e0; /* Altera a cor ao passar o mouse */
+    background-color: #444;
 }
 
 .option-title {
@@ -29,4 +64,13 @@
 
 .percentage {
     margin-left: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #2a2a2a;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
