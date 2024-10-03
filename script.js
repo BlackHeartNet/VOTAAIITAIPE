@@ -1,16 +1,24 @@
+// Configuração do Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDwA08nYaCD3ns99CXi2DgngsaucR_ySIU",
+    authDomain: "votaaiitaipe.firebaseapp.com",
+    databaseURL: "https://votaaiitaipe-default-rtdb.firebaseio.com",
+    projectId: "votaaiitaipe",
+    storageBucket: "votaaiitaipe.appspot.com",
+    messagingSenderId: "452394212573",
+    appId: "1:452394212573:web:8f1c52d40ddc8e0023cf34",
+    measurementId: "G-N4LEFSJ1ZS"
+};
+
+// Inicializa o Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore(app);
+
 let votos = {
     "TED E MARCELO": 0,
     "DÉ CARAJE E WAGNER": 0,
     "MARCONI E LUANDER": 0
 };
-
-// Verifica se o usuário já votou
-if (localStorage.getItem('votoFeito')) {
-    document.getElementById('aviso').innerHTML = '<p>Você já votou e não pode votar novamente.</p>';
-    document.getElementById('votacao').style.display = 'none';
-} else {
-    document.getElementById('votacao').style.display = 'none';
-}
 
 // Carrega os resultados do Firestore
 db.collection("votacoes").doc("resultados").get().then((doc) => {
@@ -18,37 +26,33 @@ db.collection("votacoes").doc("resultados").get().then((doc) => {
         votos = doc.data();
         atualizarResultados();
     } else {
-        console.log("Nenhum resultado encontrado");
+        // Se o documento não existir, cria um novo com os votos inicializados
+        db.collection("votacoes").doc("resultados").set(votos);
     }
+}).catch((error) => {
+    console.error("Erro ao carregar resultados: ", error);
 });
 
 // Função para votar
 function vote(opcao) {
-    if (localStorage.getItem('votoFeito')) {
-        alert("Você já votou e não pode votar novamente.");
-        return;
-    }
-
     votos[opcao]++;
-    localStorage.setItem('votoFeito', 'true'); // Marca que o usuário votou
     atualizarResultados();
 
     // Atualiza os resultados no Firestore
-    db.collection("votacoes").doc("resultados").set(votos).then(() => {
-        document.getElementById('aviso').innerHTML = '<p>Você já votou e não pode votar novamente.</p>';
-        document.getElementById('votacao').style.display = 'none';
-    }).catch((error) => {
-        console.error("Erro ao atualizar resultados: ", error);
-    });
+    db.collection("votacoes").doc("resultados").set(votos)
+        .then(() => {
+            alert("Seu voto foi registrado!");
+        })
+        .catch((error) => {
+            console.error("Erro ao atualizar resultados: ", error);
+        });
 }
 
 // Atualiza os resultados na página
 function atualizarResultados() {
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = '<h3>Resultados:</h3>' +
-        `<p>TED E MARCELO - ${votos["TED E MARCELO"]} votos</p>` +
-        `<p>DÉ CARAJE E WAGNER - ${votos["DÉ CARAJE E WAGNER"]} votos</p>` +
-        `<p>MARCONI E LUANDER - ${votos["MARCONI E LUANDER"]} votos</p>`;
+    document.getElementById('resultado-ted').innerText = votos["TED E MARCELO"];
+    document.getElementById('resultado-de').innerText = votos["DÉ CARAJE E WAGNER"];
+    document.getElementById('resultado-marconi').innerText = votos["MARCONI E LUANDER"];
 }
 
 // Função para exibir as opções de voto
