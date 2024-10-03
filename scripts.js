@@ -4,15 +4,11 @@ const votes = {
     opcao3: 0,
 };
 
-document.getElementById("voting-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const option = document.getElementById("vote-option").value;
-    if (option) {
-        votes[option]++;
-        updateResults();
-        alert(`Obrigado! Você votou na ${option}.`);
-    }
-});
+function vote(option) {
+    votes[option]++;
+    updateResults();
+    alert(`Obrigado! Você votou na ${option}.`);
+}
 
 function updateResults() {
     const totalVotes = votes.opcao1 + votes.opcao2 + votes.opcao3;
