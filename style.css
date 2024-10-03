@@ -19,7 +19,18 @@ h1 {
 .vote-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+}
+
+.vote-option {
+    display: flex;
+    align-items: center;
+}
+
+.option-image {
+    width: 50px;  /* Tamanho reduzido */
+    height: auto;
+    margin-right: 10px; /* Espaçamento à direita da imagem */
 }
 
 button {
