@@ -20,7 +20,6 @@ function vote(option) {
     db.collection("votes").doc(option).set({
         votes: firebase.firestore.FieldValue.increment(1)
     }, { merge: true }).then(() => {
-        // Atualiza a contagem visual no resumo lateral
         updateVoteCount(option);
     }).catch(error => {
         console.error("Erro ao atualizar votos: ", error);
@@ -39,18 +38,6 @@ function updateVoteCount(option) {
     });
 }
 
-// Função para atualizar os resultados
-function updateResults() {
-    db.collection("votes").get().then(snapshot => {
-        snapshot.forEach(doc => {
-            updateVoteCount(doc.id);
-        });
-    });
-}
-
-// Atualiza os resultados em tempo real
-db.collection("votes").onSnapshot(updateResults);
-
 // Inicializa os votos no Firestore se não existirem
 function initVotes() {
     const options = ["opcao1", "opcao2", "opcao3"];
@@ -65,4 +52,5 @@ function initVotes() {
     });
 }
 
+// Chama a inicialização
 initVotes();
