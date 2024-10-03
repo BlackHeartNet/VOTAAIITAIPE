@@ -40,6 +40,8 @@ h1 {
     padding: 15px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    width: 100%; /* Botão ocupa toda a largura */
+    text-align: left; /* Alinha o texto à esquerda */
 }
 
 .votar-button:hover {
