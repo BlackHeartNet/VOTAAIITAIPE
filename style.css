@@ -1,62 +1,25 @@
 body {
-    background-color: #121212;
-    color: #ffffff;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 600px;
-    margin: auto;
+    background-color: #1a1a1a;
+    color: white;
     text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
+.container {
+    padding: 20px;
 }
 
-.aviso {
-    margin-bottom: 20px;
-    background-color: #1f1f1f;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.vote-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.vote-option {
+.opcao {
+    cursor: pointer;
     display: flex;
     align-items: center;
+    margin: 10px 0;
 }
 
-.option-image {
-    width: 50px;  /* Tamanho reduzido */
-    height: auto;
-    margin-right: 10px; /* Espaçamento à direita da imagem */
+.opcao img {
+    margin-right: 10px;
 }
 
-.votar-button {
-    background-color: #ff4081; /* Cor vibrante */
-    border: none;
-    color: #ffffff;
-    padding: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    width: 100%; /* Botão ocupa toda a largura */
-    text-align: left; /* Alinha o texto à esquerda */
-}
-
-.votar-button:hover {
-    background-color: #ff79b0; /* Cor ao passar o mouse */
-    transform: scale(1.05); /* Efeito de aumento */
-}
-
-.result {
+footer {
     margin-top: 20px;
-    text-align: left; /* Alinha o texto à esquerda */
 }
