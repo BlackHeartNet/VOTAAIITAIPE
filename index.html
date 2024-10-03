@@ -1,21 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>VOTA AI ITAIPÉ</title>
-</head>
-<body>
-    <header>
-        <h1>VOTA AI ITAIPÉ</h1>
-    </header>
-    <main>
-        <!-- Conteúdo principal vai aqui -->
-    </main>
-    <footer>
-        <p>&copy; 2024 VOTA AI ITAIPÉ. Todos os direitos reservados.</p>
-    </footer>
-    <script src="script.js"></script>
-</body>
-</html>
+<main>
+    <div class="voting-envelope">
+        <h2>Envelope de Votação</h2>
+        <form id="voting-form">
+            <label for="vote-option">Escolha uma opção:</label>
+            <select id="vote-option" required>
+                <option value="">Selecione uma opção</option>
+                <option value="opcao1">Opção 1</option>
+                <option value="opcao2">Opção 2</option>
+                <option value="opcao3">Opção 3</option>
+            </select>
+            <button type="submit">Votar</button>
+        </form>
+
+        <div class="results">
+            <div class="result-bar" id="result-opcao1">
+                <span class="option-title">Opção 1</span>
+                <div class="progress" style="width: 0%; background-color: #4caf50;"></div>
+                <span class="percentage">0%</span>
+            </div>
+            <div class="result-bar" id="result-opcao2">
+                <span class="option-title">Opção 2</span>
+                <div class="progress" style="width: 0%; background-color: #2196F3;"></div>
+                <span class="percentage">0%</span>
+            </div>
+            <div class="result-bar" id="result-opcao3">
+                <span class="option-title">Opção 3</span>
+                <div class="progress" style="width: 0%; background-color: #f44336;"></div>
+                <span class="percentage">0%</span>
+            </div>
+        </div>
+    </div>
+</main>
