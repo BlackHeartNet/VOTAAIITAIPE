@@ -14,50 +14,37 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const votes = {
-    opcao1: 0,
-    opcao2: 0,
-    opcao3: 0,
-};
-
 // Função para votar
 function vote(option) {
-    const confirmation = confirm(`Você tem certeza de que deseja votar na ${option}?`);
-    if (confirmation) {
-        // Atualiza o número de votos no Firestore
-        db.collection("votes").doc(option).set({
-            votes: firebase.firestore.FieldValue.increment(1)
-        }, { merge: true }).then(() => {
-            alert(`Obrigado! Você votou na ${option}.`);
-        }).catch(error => {
-            console.error("Erro ao atualizar votos: ", error);
-        });
-    }
+    // Atualiza o número de votos no Firestore
+    db.collection("votes").doc(option).set({
+        votes: firebase.firestore.FieldValue.increment(1)
+    }, { merge: true }).then(() => {
+        // Atualiza a contagem visual no resumo lateral
+        updateVoteCount(option);
+    }).catch(error => {
+        console.error("Erro ao atualizar votos: ", error);
+    });
+}
+
+// Função para atualizar a contagem visual de votos no resumo
+function updateVoteCount(option) {
+    const countElement = document.getElementById(`summary-count-${option}`);
+    db.collection("votes").doc(option).get().then(doc => {
+        if (doc.exists) {
+            countElement.textContent = `${doc.data().votes} votos`;
+        }
+    }).catch(error => {
+        console.error("Erro ao obter votos: ", error);
+    });
 }
 
 // Função para atualizar os resultados
 function updateResults() {
     db.collection("votes").get().then(snapshot => {
-        let totalVotes = 0;
         snapshot.forEach(doc => {
-            votes[doc.id] = doc.data().votes || 0;
-            totalVotes += votes[doc.id];
+            updateVoteCount(doc.id);
         });
-        
-        // Atualiza a contagem no resumo de votos
-        document.getElementById('count-opcao1').textContent = `${votes.opcao1} votos`;
-        document.getElementById('count-opcao2').textContent = `${votes.opcao2} votos`;
-        document.getElementById('count-opcao3').textContent = `${votes.opcao3} votos`;
-
-        for (const [key, value] of Object.entries(votes)) {
-            const percentage = totalVotes > 0 ? (value / totalVotes * 100).toFixed(2) : 0;
-            const progressBar = document.getElementById(`result-${key}`).querySelector('.progress');
-            const percentageDisplay = document.getElementById(`result-${key}`).querySelector('.percentage');
-
-            // Atualiza a largura da barra de progresso
-            progressBar.style.width = percentage + '%';
-            percentageDisplay.textContent = percentage + '%';
-        }
     });
 }
 
