@@ -48,4 +48,5 @@ button:hover {
 
 .result {
     margin-top: 20px;
+    text-align: left; /* Alinha o texto à esquerda */
 }
