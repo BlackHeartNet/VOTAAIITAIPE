@@ -20,17 +20,35 @@ const votes = {
     opcao3: 0,
 };
 
+// Função para votar
 function vote(option) {
     const confirmation = confirm(`Você tem certeza de que deseja votar na ${option}?`);
     if (confirmation) {
-        db.collection("votes").doc(option).update({
-            votes: firebase.firestore.FieldValue.increment(1)
-        }).then(() => {
-            alert(`Obrigado! Você votou na ${option}.`);
+        // Atualiza o número de votos no Firestore
+        db.collection("votes").doc(option).get().then(doc => {
+            if (doc.exists) {
+                db.collection("votes").doc(option).update({
+                    votes: firebase.firestore.FieldValue.increment(1)
+                }).then(() => {
+                    alert(`Obrigado! Você votou na ${option}.`);
+                }).catch(error => {
+                    console.error("Erro ao atualizar votos: ", error);
+                });
+            } else {
+                // Se o documento não existe, cria um novo
+                db.collection("votes").doc(option).set({
+                    votes: 1
+                }).then(() => {
+                    alert(`Obrigado! Você votou na ${option}.`);
+                }).catch(error => {
+                    console.error("Erro ao criar votos: ", error);
+                });
+            }
         });
     }
 }
 
+// Função para atualizar os resultados
 function updateResults() {
     db.collection("votes").get().then(snapshot => {
         let totalVotes = 0;
@@ -63,7 +81,13 @@ db.collection("votes").onSnapshot(updateResults);
 function initVotes() {
     const options = ["opcao1", "opcao2", "opcao3"];
     options.forEach(option => {
-        db.collection("votes").doc(option).set({ votes: 0 }, { merge: true });
+        db.collection("votes").doc(option).get().then(doc => {
+            if (!doc.exists) {
+                db.collection("votes").doc(option).set({ votes: 0 });
+            }
+        }).catch(error => {
+            console.error("Erro ao inicializar votos: ", error);
+        });
     });
 }
 
