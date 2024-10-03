@@ -14,27 +14,35 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+// Contadores de cliques
+let clickCounter1 = 0;
+let clickCounter2 = 0;
+let clickCounter3 = 0;
+
 // Função para votar
 function vote(option) {
-    // Atualiza o número de votos no Firestore
-    db.collection("votes").doc(option).set({
-        votes: firebase.firestore.FieldValue.increment(1)
-    }, { merge: true }).then(() => {
-        updateVoteCount(option);
-    }).catch(error => {
-        console.error("Erro ao atualizar votos: ", error);
-    });
+    if (option === 'opcao1') {
+        clickCounter1++;
+        updateVoteCount('opcao1', clickCounter1);
+    } else if (option === 'opcao2') {
+        clickCounter2++;
+        updateVoteCount('opcao2', clickCounter2);
+    } else if (option === 'opcao3') {
+        clickCounter3++;
+        updateVoteCount('opcao3', clickCounter3);
+    }
 }
 
 // Função para atualizar a contagem visual de votos no resumo
-function updateVoteCount(option) {
+function updateVoteCount(option, count) {
     const countElement = document.getElementById(`summary-count-${option}`);
-    db.collection("votes").doc(option).get().then(doc => {
-        if (doc.exists) {
-            countElement.textContent = `${doc.data().votes} votos`;
-        }
-    }).catch(error => {
-        console.error("Erro ao obter votos: ", error);
+    countElement.textContent = `${count} votos`;
+
+    // Atualiza o Firestore
+    db.collection("votes").doc(option).set({
+        votes: count
+    }, { merge: true }).catch(error => {
+        console.error("Erro ao atualizar votos: ", error);
     });
 }
 
