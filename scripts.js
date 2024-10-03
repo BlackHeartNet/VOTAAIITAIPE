@@ -17,11 +17,9 @@ function updateResults() {
         const percentage = totalVotes > 0 ? (value / totalVotes * 100).toFixed(2) : 0;
         const progressBar = document.getElementById(`result-${key}`).querySelector('.progress');
         const percentageDisplay = document.getElementById(`result-${key}`).querySelector('.percentage');
-        
-        // Atualiza a largura da barra de progresso somente para a opção votada
-        if (key === option) {
-            progressBar.style.width = percentage + '%';
-        }
+
+        // Atualiza a largura da barra de progresso
+        progressBar.style.width = percentage + '%';
         percentageDisplay.textContent = percentage + '%';
     }
 }
